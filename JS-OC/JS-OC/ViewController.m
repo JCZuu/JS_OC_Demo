@@ -41,7 +41,7 @@
     [webPageView stringByEvaluatingJavaScriptFromString:js_str];
 
 }
-//js调用oc本地方法
+//方法一：js调用oc本地方法，JSExport
 - (void)js_ocMethod
 {
     //方法类
@@ -62,6 +62,31 @@
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:tip delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
     [alert show];
 }
+//方法三：js调用oc本地方法，Block方式
+- (void)blockMethod
+{
+    __weak ViewController *vc = self;
+    JSContext *context=[webPageView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+    /**注意循环引用问题*/
+    //调用id：test
+    context[@"test"] = ^(id str)
+    {
+        NSArray *values = [JSContext currentArguments];
+        for (JSValue *value in values)
+        {
+            //本地方法名称：showAlert1
+            if ([[value toString] isEqualToString:@"showAlert1"])
+            {
+                [vc showAlert1];
+            }
+        }
+    };
+}
+- (void)showAlert1
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"Block之JS调用本地方法" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    [alert show];
+}
 
 
 #pragma mark - UIWebViewDelegate
@@ -75,6 +100,7 @@
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    //方法二：拦截url
     //适用于UIWebView和WKWebView
     //注：url路径为移动端与h5商定，不区分大小写
     if ([request.URL.absoluteString hasPrefix:@"myapp://url"]) {
@@ -90,7 +116,8 @@
 //    [self js_Method];
     //js调用本地方法
     [self js_ocMethod];
-
+    
+    [self blockMethod];
 }
 
 @end

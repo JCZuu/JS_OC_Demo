@@ -10,18 +10,24 @@
 </div>
 <br><br>
 <div>
-<input type="button" value="方式一：JSExport"   onclick="show1()">
+<input type="button" value="方式一：JSExport"   onclick="show()">
+</div>
+<br><br>
+<div>
+    <input type="button" value="方式三：Block"   onclick="show1()">
 </div>
 <br><br>
 <div>
     <a href="myapp://url">拦截url</a>
 </div>
 <script type="text/javascript">
-    function show1(){
+    function show(){
         window.test.showAlert('js调用oc本地方法');
     }
-    function show2(){
-        window.test.showAlert('js调用oc本地方法');
+    function show1(){
+        //test：调用id
+        //showAlert1:oc本地方法名
+       test('showAlert1');
     }
 </script>
 </body>
