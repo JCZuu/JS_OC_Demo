@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E989E952223F08F00FF25F4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E989E942223F08F00FF25F4 /* README.md */; };
+		7E989E972223F27200FF25F4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7E989E962223F27200FF25F4 /* README.md */; };
 		7EAB2925221D376400E4FBA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB2924221D376400E4FBA6 /* AppDelegate.m */; };
 		7EAB2928221D376400E4FBA6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAB2927221D376400E4FBA6 /* ViewController.m */; };
 		7EAB292B221D376400E4FBA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EAB2929221D376400E4FBA6 /* Main.storyboard */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7E989E942223F08F00FF25F4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7E989E962223F27200FF25F4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		7EAB2920221D376400E4FBA6 /* JS-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JS-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EAB2923221D376400E4FBA6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7EAB2924221D376400E4FBA6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,8 +65,8 @@
 		7EAB2922221D376400E4FBA6 /* JS-OC */ = {
 			isa = PBXGroup;
 			children = (
-				7E989E942223F08F00FF25F4 /* README.md */,
 				7EAB2923221D376400E4FBA6 /* AppDelegate.h */,
+				7E989E962223F27200FF25F4 /* README.md */,
 				7EAB2924221D376400E4FBA6 /* AppDelegate.m */,
 				7EAB2926221D376400E4FBA6 /* ViewController.h */,
 				7EAB2927221D376400E4FBA6 /* ViewController.m */,
@@ -141,7 +141,7 @@
 			files = (
 				7EAB2930221D376600E4FBA6 /* LaunchScreen.storyboard in Resources */,
 				7EAB2940221D47F400E4FBA6 /* myHtml.html in Resources */,
-				7E989E952223F08F00FF25F4 /* README.md in Resources */,
+				7E989E972223F27200FF25F4 /* README.md in Resources */,
 				7EAB292D221D376600E4FBA6 /* Assets.xcassets in Resources */,
 				7EAB292B221D376400E4FBA6 /* Main.storyboard in Resources */,
 			);
