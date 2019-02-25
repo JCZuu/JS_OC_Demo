@@ -5,7 +5,11 @@
 //  Created by 祝国庆 on 2019/2/20.
 //  Copyright © 2019 qixinpuhui. All rights reserved.
 //
-
+/*
+ js与oc交互方式：
+ 1、JSExport
+ 2、拦截url（适用于UIWebView和WKWebView）
+*/
 #import "ViewController.h"
 #import "JSObject.h"
 @interface ViewController ()<UIWebViewDelegate, JSObjcDelegate>
@@ -26,7 +30,6 @@
     webPageView.scalesPageToFit = YES;
     webPageView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 50);
     [self.view addSubview:webPageView];
-//    [webPageView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"myHtml" ofType:@"html"];
     [webPageView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
 //
@@ -47,14 +50,11 @@
     //js执行环境，包含了js执行时所需要的所有函数和对象
     JSContext *jsContext = [webPageView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
     //test：H5与移动端约定的id
-    jsContext[@"toutiao"] = jsObject;
+    jsContext[@"test"] = jsObject;
     jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) {
         context.exception = exceptionValue;
         NSLog(@"异常信息：%@", exceptionValue);
     };
-    
-//    NSString *jsText = [NSString stringWithFormat:@"window.test.showAlert('js调用oc方法')"]; //准备执行的js代码
-//    [webPageView stringByEvaluatingJavaScriptFromString:jsText];
 }
 //本地方法的具体实现
 - (void)showAlert:(NSString *)tip
@@ -72,6 +72,17 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    //适用于UIWebView和WKWebView
+    //注：url路径为移动端与h5商定，不区分大小写
+    if ([request.URL.absoluteString hasPrefix:@"myapp://url"]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"弹窗" message:@"拦截url方法" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+    }
+    return YES;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {

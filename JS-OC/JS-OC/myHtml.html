@@ -6,15 +6,22 @@
 </head>
 <body>
 <div>
-<p h3>JS与OC交互</p>
+<p h1>JS与OC交互</p>
 </div>
+<br><br>
 <div>
-<input type="button" value="OC本地弹窗"   onclick="show()">
+<input type="button" value="方式一：JSExport"   onclick="show1()">
+</div>
+<br><br>
+<div>
+    <a href="myapp://url">拦截url</a>
 </div>
 <script type="text/javascript">
-    function show(){
-<!--        window.toutiao.showAlert('111');-->
-        toutiao.showAlert('112');
+    function show1(){
+        window.test.showAlert('js调用oc本地方法');
+    }
+    function show2(){
+        window.test.showAlert('js调用oc本地方法');
     }
 </script>
 </body>
